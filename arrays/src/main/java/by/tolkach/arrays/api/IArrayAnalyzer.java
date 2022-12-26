@@ -2,5 +2,5 @@ package by.tolkach.arrays.api;
 
 public interface IArrayAnalyzer {
 
-    long[] analyze(long[] arr);
+    Integer[] analyze(Integer[] arr);
 }
