@@ -1,0 +1,7 @@
+server:
+  port: 8081
+smev:
+  url:
+    fl: http://localhost:8082/smev/fl/{sts}
+    ul: http://localhost:8082/smev/ul/{inn}
+    response: http://localhost:8082/smev/response/{request_id}
