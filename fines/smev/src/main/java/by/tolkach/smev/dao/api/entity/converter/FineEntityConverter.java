@@ -13,7 +13,7 @@ public class FineEntityConverter implements IEntityConverter<Fine, FineEntity> {
                 .setIncomeSum(dto.getIncomeSum())
                 .setPaymentSum(dto.getPaymentSum())
                 .setDecreeNumber(dto.getDecreeNumber())
-                .setSts(dto.getSts())
+                .setVehicleId(dto.getVehicleId())
                 .setDate(dto.getDate())
                 .setArticle(dto.getArticle())
                 .build();
@@ -26,7 +26,7 @@ public class FineEntityConverter implements IEntityConverter<Fine, FineEntity> {
                 .setIncomeSum(entity.getIncomeSum())
                 .setPaymentSum(entity.getPaymentSum())
                 .setDecreeNumber(entity.getDecreeNumber())
-                .setSts(entity.getSts())
+                .setVehicleId(entity.getVehicleId())
                 .setDate(entity.getDate())
                 .setArticle(entity.getArticle())
                 .build();

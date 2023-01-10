@@ -1,20 +1,20 @@
 package by.tolkach.adapter.model;
 
 public class Request {
-    private String identifier;
+    private String vehicleId;
     private IdType idType;
 
-    public Request(String identifier, IdType idType) {
-        this.identifier = identifier;
+    public Request(String vehicleId, IdType idType) {
+        this.vehicleId = vehicleId;
         this.idType = idType;
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public IdType getIdType() {
@@ -26,7 +26,7 @@ public class Request {
     }
 
     public static class RequestBuilder {
-        private String identifier;
+        private String vehicleId;
         private IdType idType;
 
         private RequestBuilder() {
@@ -36,8 +36,8 @@ public class Request {
             return new RequestBuilder();
         }
 
-        public RequestBuilder setIdentifier(String identifier) {
-            this.identifier = identifier;
+        public RequestBuilder setVehicleId(String vehicleId) {
+            this.vehicleId = vehicleId;
             return this;
         }
 
@@ -47,7 +47,7 @@ public class Request {
         }
 
         public Request build() {
-            return new Request(identifier, idType);
+            return new Request(vehicleId, idType);
         }
     }
 }

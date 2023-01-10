@@ -6,12 +6,12 @@ import java.util.UUID;
 
 public class RequestTemplate {
     private UUID requestId;
-    private String identifier;
+    private String vehicleId;
     private IdType idType;
 
-    public RequestTemplate(UUID requestId, String identifier, IdType idType) {
+    public RequestTemplate(UUID requestId, String vehicleId, IdType idType) {
         this.requestId = requestId;
-        this.identifier = identifier;
+        this.vehicleId = vehicleId;
         this.idType = idType;
     }
 
@@ -23,12 +23,12 @@ public class RequestTemplate {
         this.requestId = requestId;
     }
 
-    public String getIdentifier() {
-        return identifier;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setIdentifier(String identifier) {
-        this.identifier = identifier;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public IdType getIdType() {
@@ -41,7 +41,7 @@ public class RequestTemplate {
 
     public static class RequestTemplateBuilder {
         private UUID requestId;
-        private String identifier;
+        private String vehicleId;
         private IdType idType;
 
         private RequestTemplateBuilder() {
@@ -55,8 +55,8 @@ public class RequestTemplate {
             this.requestId = requestId;
         }
 
-        public RequestTemplateBuilder setIdentifier(String identifier) {
-            this.identifier = identifier;
+        public RequestTemplateBuilder setVehicleId(String vehicleId) {
+            this.vehicleId = vehicleId;
             return this;
         }
 
@@ -66,7 +66,7 @@ public class RequestTemplate {
         }
 
         public RequestTemplate build() {
-            return new RequestTemplate(requestId, identifier, idType);
+            return new RequestTemplate(requestId, vehicleId, idType);
         }
     }
 }

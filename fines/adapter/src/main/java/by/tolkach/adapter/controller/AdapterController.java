@@ -1,17 +1,14 @@
 package by.tolkach.adapter.controller;
 
+import by.tolkach.adapter.controller.api.IAdapterController;
 import by.tolkach.adapter.model.IdType;
 import by.tolkach.adapter.model.Request;
 import by.tolkach.adapter.service.api.IAdapterService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/fine")
-public class AdapterController {
+public class AdapterController implements IAdapterController {
 
     private final IAdapterService adapterService;
 
@@ -19,15 +16,13 @@ public class AdapterController {
         this.adapterService = adapterService;
     }
 
-    @RequestMapping(value = "/fl/{sts}",method = RequestMethod.GET)
-    ResponseEntity<?> fineFlRequest(@PathVariable String sts) {
+    public ResponseEntity<?> readFlFine(String sts) {
         return ResponseEntity.ok(this.adapterService.fineRequest(Request.RequestBuilder.createBuilder()
-                .setIdentifier(sts).setIdType(IdType.STS).build()));
+                .setVehicleId(sts).setIdType(IdType.STS).build()));
     }
 
-    @RequestMapping(value = "/ul/{inn}", method = RequestMethod.GET)
-    ResponseEntity<?> fineUlRequest(@PathVariable String inn) {
+    public ResponseEntity<?> readUlFine(String inn) {
         return ResponseEntity.ok(this.adapterService.fineRequest(Request.RequestBuilder.createBuilder()
-                .setIdentifier(inn).setIdType(IdType.INN).build()));
+                .setVehicleId(inn).setIdType(IdType.INN).build()));
     }
 }

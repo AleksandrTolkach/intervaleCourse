@@ -7,7 +7,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public interface ISmevRest {
-    CompletableFuture<UUID> informationRequest(RequestTemplate requestTemplate);
-    CompletableFuture<FineTemplate> responseRequest(UUID requestId);
+    CompletableFuture<UUID> createRequest(RequestTemplate requestTemplate);
+    CompletableFuture<FineTemplate> getResponse(UUID requestId);
     void deleteRequest(UUID requestId);
 }

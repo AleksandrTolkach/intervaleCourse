@@ -9,5 +9,5 @@ import java.util.UUID;
 @Repository
 public interface IFineStorage extends JpaRepository<FineEntity, UUID> {
 
-    FineEntity findBySts(String sts);
+    FineEntity findByVehicleId(String vehicleId);
 }

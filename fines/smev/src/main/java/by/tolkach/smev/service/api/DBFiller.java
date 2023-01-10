@@ -1,28 +1,27 @@
-package by.tolkach.smev.controller.listener;
+package by.tolkach.smev.service.api;
 
 import by.tolkach.smev.model.Fine;
-import by.tolkach.smev.service.api.IFineService;
-import by.tolkach.smev.service.api.IWorkerService;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Component
-public class ApplicationContextListener {
-    private final IFineService fineService;
-    private final IWorkerService workerService;
+public class DBFiller {
 
-    public ApplicationContextListener(IFineService fineService, IWorkerService workerService) {
+    private final IFineService fineService;
+
+    public DBFiller(IFineService fineService) {
         this.fineService = fineService;
-        this.workerService = workerService;
     }
 
-    @EventListener(ContextRefreshedEvent.class)
-    public void handle(ContextRefreshedEvent event) {
+    @PostConstruct
+    public void fillDb() {
         ThreadLocalRandom random = ThreadLocalRandom.current();
+        List<Fine> fines = new ArrayList<>();
         if (this.fineService.count() == 0) {
             for (int i = 0; i < 20; i++) {
                 StringBuilder sbSts = new StringBuilder();
@@ -37,13 +36,14 @@ public class ApplicationContextListener {
                         .setIncomeSum(random.nextInt(0, 1000))
                         .setPaymentSum(random.nextInt(0, 1000))
                         .setDecreeNumber(random.nextInt(0, 100))
-                        .setSts(sbSts.toString())
-                        .setDate(LocalDate.ofYearDay(random.nextInt(2000, 2022), random.nextInt(0, 365)))
+                        .setVehicleId(sbSts.toString())
+                        .setDate(LocalDate.ofYearDay(random.nextInt(2000, 2022),
+                                random.nextInt(0, 365)))
                         .setArticle(sbArticle.toString())
                         .build();
-                this.fineService.create(fine);
+                fines.add(fine);
             }
         }
-        this.workerService.run();
+        this.fineService.createList(fines);
     }
 }

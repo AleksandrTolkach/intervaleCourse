@@ -33,7 +33,7 @@ public class FineService implements IFineService {
 
     @Override
     public Fine readByVehicleId(String vehicleId) {
-        return this.fineEntityConverter.toDto(this.fineStorage.findBySts(vehicleId));
+        return this.fineEntityConverter.toDto(this.fineStorage.findByVehicleId(vehicleId));
     }
 
     @Override

@@ -9,7 +9,7 @@ public class RequestTemplateConverter implements ITemplateConverter<Request, Req
     @Override
     public RequestTemplate toTemplate(Request dto) {
         return RequestTemplate.RequestTemplateBuilder.createBuilder()
-                .setIdentifier(dto.getIdentifier())
+                .setVehicleId(dto.getVehicleId())
                 .setIdType(dto.getIdType())
                 .build();
     }
@@ -17,7 +17,7 @@ public class RequestTemplateConverter implements ITemplateConverter<Request, Req
     @Override
     public Request toDto(RequestTemplate template) {
         return Request.RequestBuilder.createBuilder()
-                .setIdentifier(template.getIdentifier())
+                .setVehicleId(template.getVehicleId())
                 .setIdType(template.getIdType())
                 .build();
     }

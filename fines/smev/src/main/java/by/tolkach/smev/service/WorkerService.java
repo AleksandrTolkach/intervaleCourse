@@ -7,16 +7,16 @@ import by.tolkach.smev.service.api.IFineService;
 import by.tolkach.smev.service.api.IRequestService;
 import by.tolkach.smev.service.api.IResponseService;
 import by.tolkach.smev.service.api.IWorkerService;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.TimeUnit;
 
 @Service
-@Lazy
 public class WorkerService implements IWorkerService {
 
     private boolean isWorking = false;
@@ -33,12 +33,11 @@ public class WorkerService implements IWorkerService {
     }
 
     @Override
-    @Async
     public void run() {
         this.isWorking = true;
         while (isWorking) {
             try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(30));
+                Thread.sleep(TimeUnit.SECONDS.toMillis(10));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -61,7 +60,7 @@ public class WorkerService implements IWorkerService {
     }
 
     @Override
-    public Fine getInformation(UUID requestId) {
+    public Fine getResponse(UUID requestId) {
         Response response = this.responseService.readByRequestId(requestId);
         return this.fineService.read(response.getFineId());
     }
@@ -71,4 +70,19 @@ public class WorkerService implements IWorkerService {
         this.isWorking = false;
     }
 
+    @Component
+    private class WorkerInitializer {
+        private final ExecutorService executorService;
+        private final IWorkerService workerService;
+
+        public WorkerInitializer(ExecutorService executorService, IWorkerService workerService) {
+            this.executorService = executorService;
+            this.workerService = workerService;
+        }
+
+        @PostConstruct
+        public void init() {
+            this.executorService.submit(this.workerService);
+        }
+    }
 }

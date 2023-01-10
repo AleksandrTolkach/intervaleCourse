@@ -22,18 +22,13 @@ public class SmevService implements ISmevService {
     }
 
     @Override
-    public UUID getFlInformation(String sts) {
-        return this.requestService.getFlInformation(sts);
-    }
-
-    @Override
-    public UUID getUlInformation(String inn) {
-        return this.requestService.getUlInformation(inn);
+    public UUID getFlInformation(Request request) {
+        return this.requestService.createRequest(request);
     }
 
     @Override
     public Fine getResponse(UUID requestId) {
-        return this.workerService.getInformation(requestId);
+        return this.workerService.getResponse(requestId);
     }
 
     @Override

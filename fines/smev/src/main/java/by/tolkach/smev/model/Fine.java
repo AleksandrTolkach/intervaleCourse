@@ -8,16 +8,16 @@ public class Fine {
     private int incomeSum;
     private int paymentSum;
     private int decreeNumber;
-    private String sts;
+    private String vehicleId;
     private LocalDate date;
     private String article;
 
-    public Fine(UUID id, int incomeSum, int paymentSum, int decreeNumber, String sts, LocalDate date, String article) {
+    public Fine(UUID id, int incomeSum, int paymentSum, int decreeNumber, String vehicleId, LocalDate date, String article) {
         this.id = id;
         this.incomeSum = incomeSum;
         this.paymentSum = paymentSum;
         this.decreeNumber = decreeNumber;
-        this.sts = sts;
+        this.vehicleId = vehicleId;
         this.date = date;
         this.article = article;
     }
@@ -54,12 +54,12 @@ public class Fine {
         this.decreeNumber = decreeNumber;
     }
 
-    public String getSts() {
-        return sts;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setSts(String sts) {
-        this.sts = sts;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public LocalDate getDate() {
@@ -83,7 +83,7 @@ public class Fine {
         private int incomeSum;
         private int paymentSum;
         private int decreeNumber;
-        private String sts;
+        private String vehicleId;
         private LocalDate date;
         private String article;
 
@@ -114,8 +114,8 @@ public class Fine {
             return this;
         }
 
-        public FineBuilder setSts(String sts) {
-            this.sts = sts;
+        public FineBuilder setVehicleId(String vehicleId) {
+            this.vehicleId = vehicleId;
             return this;}
 
 
@@ -130,7 +130,7 @@ public class Fine {
         }
 
         public Fine build() {
-            return new Fine(id, incomeSum, paymentSum, decreeNumber, sts, date, article);
+            return new Fine(id, incomeSum, paymentSum, decreeNumber, vehicleId, date, article);
         }
     }
 }

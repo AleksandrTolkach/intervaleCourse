@@ -13,7 +13,7 @@ public class FineTemplateConverter implements ITemplateConverter<Fine, FineTempl
                 .setIncomeSum(dto.getIncomeSum())
                 .setPaymentSum(dto.getPaymentSum())
                 .setDecreeNumber(dto.getDecreeNumber())
-                .setSts(dto.getSts())
+                .setVehicleId(dto.getVehicleId())
                 .setDate(dto.getDate())
                 .setArticle(dto.getArticle())
                 .build();
@@ -25,9 +25,9 @@ public class FineTemplateConverter implements ITemplateConverter<Fine, FineTempl
                 .setIncomeSum(template.getIncomeSum())
                 .setPaymentSum(template.getPaymentSum())
                 .setDecreeNumber(template.getDecreeNumber())
-                .setSts(template.getSts())
+                .setVehicleId(template.getVehicleId())
                 .setDate(template.getDate())
-                .setArticle(template.getSts())
+                .setArticle(template.getArticle())
                 .build();
     }
 }

@@ -4,10 +4,9 @@ import by.tolkach.smev.model.Fine;
 
 import java.util.UUID;
 
-public interface IWorkerService {
+public interface IWorkerService extends Runnable {
 
-    void run();
     void checkRequests();
-    Fine getInformation(UUID requestId);
+    Fine getResponse(UUID requestId);
     void shutdown();
 }

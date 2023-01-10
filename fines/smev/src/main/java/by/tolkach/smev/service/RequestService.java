@@ -25,16 +25,10 @@ public class RequestService implements IRequestService {
     }
 
     @Override
-    public UUID getFlInformation(String sts) {
+    public UUID createRequest(Request request) {
         UUID requestId = UUID.randomUUID();
-        this.requestStorage.save(new RequestEntity(requestId, sts, IdType.STS));
-        return requestId;
-    }
-
-    @Override
-    public UUID getUlInformation(String inn) {
-        UUID requestId = UUID.randomUUID();
-        this.requestStorage.save(new RequestEntity(requestId, inn, IdType.INN));
+        request.setId(requestId);
+        this.requestStorage.save(this.requestEntityConverter.toEntity(request));
         return requestId;
     }
 

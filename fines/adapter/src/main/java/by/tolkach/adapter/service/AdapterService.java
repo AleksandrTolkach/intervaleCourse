@@ -31,7 +31,7 @@ public class AdapterService implements IAdapterService {
     @Override
     public Fine fineRequest(Request request) {
         CompletableFuture<UUID> uuidCompletableFuture =
-                this.smevRest.informationRequest(this.requestTemplateConverter.toTemplate(request));
+                this.smevRest.createRequest(this.requestTemplateConverter.toTemplate(request));
         UUID requestId = null;
         try {
             requestId = uuidCompletableFuture.get();
@@ -40,7 +40,7 @@ public class AdapterService implements IAdapterService {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        CompletableFuture<FineTemplate> fineTemplateCompletableFuture = this.smevRest.responseRequest(requestId);
+        CompletableFuture<FineTemplate> fineTemplateCompletableFuture = this.smevRest.getResponse(requestId);
         FineTemplate fineTemplate = null;
         while (fineTemplate == null) {
             try {

@@ -6,15 +6,15 @@ public class FineTemplate {
     private int incomeSum;
     private int paymentSum;
     private int decreeNumber;
-    private String sts;
+    private String vehicleId;
     private LocalDate date;
     private String article;
 
-    public FineTemplate(int incomeSum, int paymentSum, int decreeNumber, String sts, LocalDate date, String article) {
+    public FineTemplate(int incomeSum, int paymentSum, int decreeNumber, String vehicleId, LocalDate date, String article) {
         this.incomeSum = incomeSum;
         this.paymentSum = paymentSum;
         this.decreeNumber = decreeNumber;
-        this.sts = sts;
+        this.vehicleId = vehicleId;
         this.date = date;
         this.article = article;
     }
@@ -43,12 +43,12 @@ public class FineTemplate {
         this.decreeNumber = decreeNumber;
     }
 
-    public String getSts() {
-        return sts;
+    public String getVehicleId() {
+        return vehicleId;
     }
 
-    public void setSts(String sts) {
-        this.sts = sts;
+    public void setVehicleId(String vehicleId) {
+        this.vehicleId = vehicleId;
     }
 
     public LocalDate getDate() {
@@ -71,7 +71,7 @@ public class FineTemplate {
         private int incomeSum;
         private int paymentSum;
         private int decreeNumber;
-        private String sts;
+        private String vehicleId;
         private LocalDate date;
         private String article;
 
@@ -97,9 +97,10 @@ public class FineTemplate {
             return this;
         }
 
-        public FineTemplateBuilder setSts(String sts) {
-            this.sts = sts;
-            return this;}
+        public FineTemplateBuilder setVehicleId(String vehicleId) {
+            this.vehicleId = vehicleId;
+            return this;
+        }
 
 
         public FineTemplateBuilder setDate(LocalDate date) {
@@ -113,7 +114,7 @@ public class FineTemplate {
         }
 
         public FineTemplate build() {
-            return new FineTemplate(incomeSum, paymentSum, decreeNumber, sts, date, article);
+            return new FineTemplate(incomeSum, paymentSum, decreeNumber, vehicleId, date, article);
         }
     }
 }
