@@ -1,6 +1,14 @@
 package by.tolkach.adapter.model;
 
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+@Validated
 public class Request {
+    @NotNull(message = "vehicleId can't be null")
+    @NotBlank(message = "vehicleId can't be blank")
     private String vehicleId;
     private IdType idType;
 

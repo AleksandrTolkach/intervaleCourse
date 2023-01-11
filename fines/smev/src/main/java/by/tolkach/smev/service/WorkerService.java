@@ -37,7 +37,7 @@ public class WorkerService implements IWorkerService {
         this.isWorking = true;
         while (isWorking) {
             try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(10));
+                Thread.sleep(TimeUnit.SECONDS.toMillis(15));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

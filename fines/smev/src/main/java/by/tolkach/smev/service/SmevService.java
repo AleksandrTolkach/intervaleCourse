@@ -7,7 +7,6 @@ import by.tolkach.smev.service.api.ISmevService;
 import by.tolkach.smev.service.api.IWorkerService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -22,18 +21,13 @@ public class SmevService implements ISmevService {
     }
 
     @Override
-    public UUID getFlInformation(Request request) {
+    public UUID createRequest(Request request) {
         return this.requestService.createRequest(request);
     }
 
     @Override
     public Fine getResponse(UUID requestId) {
         return this.workerService.getResponse(requestId);
-    }
-
-    @Override
-    public List<Request> getRequests() {
-        return this.requestService.getRequests();
     }
 
     @Override

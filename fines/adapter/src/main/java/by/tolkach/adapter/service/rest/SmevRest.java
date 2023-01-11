@@ -4,6 +4,7 @@ import by.tolkach.adapter.service.rest.api.ISmevRest;
 import by.tolkach.adapter.service.rest.template.FineTemplate;
 import by.tolkach.adapter.service.rest.template.RequestTemplate;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,6 +20,7 @@ public class SmevRest implements ISmevRest {
         this.restTemplate = restTemplateBuilder.build();
     }
 
+    @Async
     @Override
     public CompletableFuture<UUID> createRequest(RequestTemplate requestTemplate) {
         String uri = "http://localhost:8082/smev/request/";
@@ -26,6 +28,7 @@ public class SmevRest implements ISmevRest {
         return CompletableFuture.completedFuture(requestId);
     }
 
+    @Async
     @Override
     public CompletableFuture<FineTemplate> getResponse(UUID requestId) {
         String uri = "http://localhost:8082/smev/response/{request_id}";

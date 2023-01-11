@@ -4,6 +4,7 @@ import by.tolkach.smev.dao.api.IResponseStorage;
 import by.tolkach.smev.dao.api.entity.ResponseEntity;
 import by.tolkach.smev.dao.api.entity.converter.IEntityConverter;
 import by.tolkach.smev.model.Response;
+import by.tolkach.smev.model.exception.NotFoundException;
 import by.tolkach.smev.service.api.IResponseService;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +36,8 @@ public class ResponseService implements IResponseService {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            responseEntity = this.responseStorage.findByRequestId(requestId);
+            responseEntity = this.responseStorage.findByRequestId(requestId)
+                    .orElseThrow(() -> new NotFoundException("Запрос с таким ID пока не обработан"));
         }
         return this.responseEntityConverter.toDto(responseEntity);
     }

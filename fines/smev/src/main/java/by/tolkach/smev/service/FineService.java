@@ -4,6 +4,7 @@ import by.tolkach.smev.dao.api.IFineStorage;
 import by.tolkach.smev.dao.api.entity.FineEntity;
 import by.tolkach.smev.dao.api.entity.converter.IEntityConverter;
 import by.tolkach.smev.model.Fine;
+import by.tolkach.smev.model.exception.NotFoundException;
 import by.tolkach.smev.service.api.IFineService;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,8 @@ public class FineService implements IFineService {
 
     @Override
     public Fine readByVehicleId(String vehicleId) {
-        return this.fineEntityConverter.toDto(this.fineStorage.findByVehicleId(vehicleId));
+        return this.fineEntityConverter.toDto(this.fineStorage.findByVehicleId(vehicleId)
+                .orElseThrow(() -> new NotFoundException("Для данного ТС нет штрафов")));
     }
 
     @Override

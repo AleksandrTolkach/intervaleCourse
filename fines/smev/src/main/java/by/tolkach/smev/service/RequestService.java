@@ -3,7 +3,6 @@ package by.tolkach.smev.service;
 import by.tolkach.smev.dao.api.IRequestStorage;
 import by.tolkach.smev.dao.api.entity.RequestEntity;
 import by.tolkach.smev.dao.api.entity.converter.IEntityConverter;
-import by.tolkach.smev.model.IdType;
 import by.tolkach.smev.model.Request;
 import by.tolkach.smev.service.api.IRequestService;
 import org.springframework.stereotype.Service;

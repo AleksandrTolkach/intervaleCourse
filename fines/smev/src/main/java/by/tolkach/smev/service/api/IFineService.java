@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IFineService {
+
     void create(Fine fine);
     void createList(List<Fine> fines);
     Fine readByVehicleId(String vehicleId);

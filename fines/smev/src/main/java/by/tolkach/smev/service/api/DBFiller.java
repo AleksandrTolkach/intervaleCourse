@@ -38,7 +38,7 @@ public class DBFiller {
                         .setDecreeNumber(random.nextInt(0, 100))
                         .setVehicleId(sbSts.toString())
                         .setDate(LocalDate.ofYearDay(random.nextInt(2000, 2022),
-                                random.nextInt(0, 365)))
+                                random.nextInt(1, 365)))
                         .setArticle(sbArticle.toString())
                         .build();
                 fines.add(fine);

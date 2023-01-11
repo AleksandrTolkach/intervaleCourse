@@ -15,9 +15,9 @@ public interface ISmevController {
     @RequestMapping(value = "/request/", method = RequestMethod.POST)
     ResponseEntity<?> createRequest(@RequestBody Request request);
 
-    @RequestMapping(value = "/response/{request_id}", method = RequestMethod.GET)
-    ResponseEntity<?> getResponse(@PathVariable("request_id") UUID requestId);
+    @RequestMapping(value = {"/response/{request_id}", "/response/"}, method = RequestMethod.GET)
+    ResponseEntity<?> getResponse(@PathVariable(value = "request_id", required = false) UUID requestId);
 
-    @RequestMapping(value = "/response/{request_id}", method = RequestMethod.DELETE)
-    ResponseEntity<?> deleteRequest(@PathVariable("request_id") UUID requestId);
+    @RequestMapping(value = {"/response/{request_id}", "/response/"}, method = RequestMethod.DELETE)
+    ResponseEntity<?> deleteRequest(@PathVariable(value = "request_id", required = false) UUID requestId);
 }

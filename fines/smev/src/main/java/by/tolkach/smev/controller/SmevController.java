@@ -18,7 +18,7 @@ public class SmevController implements ISmevController {
     }
 
     public ResponseEntity<?> createRequest(Request request) {
-        return ResponseEntity.ok(this.smevService.getFlInformation(request));
+        return ResponseEntity.ok(this.smevService.createRequest(request));
     }
 
     public ResponseEntity<?> getResponse(UUID requestId) {

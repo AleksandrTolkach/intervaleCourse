@@ -2,14 +2,16 @@ package by.tolkach.smev.service.api;
 
 import by.tolkach.smev.model.Fine;
 import by.tolkach.smev.model.Request;
+import org.springframework.validation.annotation.Validated;
 
-import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Validated
 public interface ISmevService {
 
-    UUID getFlInformation(Request request);
-    Fine getResponse(UUID requestId);
-    List<Request> getRequests();
-    void deleteRequest(UUID requestId);
+    UUID createRequest(@Valid Request request);
+    Fine getResponse(@Valid @NotNull UUID requestId);
+    void deleteRequest(@Valid @NotNull UUID requestId);
 }

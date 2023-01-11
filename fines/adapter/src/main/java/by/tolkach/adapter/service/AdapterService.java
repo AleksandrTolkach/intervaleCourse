@@ -2,6 +2,7 @@ package by.tolkach.adapter.service;
 
 import by.tolkach.adapter.model.Fine;
 import by.tolkach.adapter.model.Request;
+import by.tolkach.adapter.model.exception.NotFoundException;
 import by.tolkach.adapter.service.api.IAdapterService;
 import by.tolkach.adapter.service.rest.api.ISmevRest;
 import by.tolkach.adapter.service.rest.template.FineTemplate;
@@ -13,6 +14,7 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 @Service
 public class AdapterService implements IAdapterService {
@@ -42,15 +44,24 @@ public class AdapterService implements IAdapterService {
         }
         CompletableFuture<FineTemplate> fineTemplateCompletableFuture = this.smevRest.getResponse(requestId);
         FineTemplate fineTemplate = null;
-        while (fineTemplate == null) {
+
+        for (int i = 0; i < 4; i++) {
             try {
-                Thread.sleep(TimeUnit.SECONDS.toMillis(10));
-                fineTemplate = fineTemplateCompletableFuture.get();
+                fineTemplate = fineTemplateCompletableFuture.get(5, TimeUnit.SECONDS);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
+            } catch (TimeoutException e) {
+                System.err.println("Запрос №" + i + " не вернул результат");
             }
+            if (fineTemplate != null) {
+                break;
+            }
+        }
+        if (fineTemplate == null) {
+            System.err.println("Штрафа для данного ТС нет");
+            throw new NotFoundException("Штрафа для данного ТС нет");
         }
         this.smevRest.deleteRequest(requestId);
         return this.fineTemplateConverter.toDto(fineTemplate);

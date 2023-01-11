@@ -1,10 +1,18 @@
 package by.tolkach.smev.model;
 
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Validated
 public class Request {
     private UUID id;
+    @NotNull(message = "vehicleId can't be null")
+    @NotBlank(message = "vehicleId can't be blank")
     private String vehicleId;
+    @NotNull
     private IdType idType;
 
     public Request(UUID id, String vehicleId, IdType idType) {
