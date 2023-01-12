@@ -9,8 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class DefaultTeacher implements Teacher {
     @Override
-    public void teach(Student student) {
+    public String teach(Student student) {
         System.out.println("Открываем словарь");
+        return "Открываем словарь";
     }
 
     @Override

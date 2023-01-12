@@ -1,12 +1,15 @@
 package by.tolkach.languageSchool.service.teaching;
 
-import by.tolkach.languageSchool.service.teaching.api.BeginnersTeaching;
+import by.tolkach.languageSchool.service.teaching.api.Teaching;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Reading implements BeginnersTeaching {
+public class Reading implements Teaching {
+    private static final String READ = "Читаем книжку";
+
     @Override
-    public void process() {
-        System.out.println("Читаем книжку");
+    public String process() {
+        System.out.println(READ);
+        return READ;
     }
 }

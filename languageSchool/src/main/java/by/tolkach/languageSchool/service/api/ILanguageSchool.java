@@ -4,6 +4,6 @@ import by.tolkach.languageSchool.model.Student;
 
 public interface ILanguageSchool {
 
-    void inviteStudent(Student student);
+    String inviteStudent(Student student);
     SchoolType schoolType();
 }

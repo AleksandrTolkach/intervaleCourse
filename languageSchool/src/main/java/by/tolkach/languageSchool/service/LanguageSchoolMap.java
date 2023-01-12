@@ -24,10 +24,10 @@ public class LanguageSchoolMap implements ILanguageSchool {
     }
 
     @Override
-    public void inviteStudent(Student student) {
+    public String inviteStudent(Student student) {
         Teacher teacher = this.teachers.getOrDefault(student.getLanguage().toString() + student.getLevel().toString(),
                 new DefaultTeacher());
-        teacher.teach(student);
+        return teacher.teach(student);
     }
 
     @Override

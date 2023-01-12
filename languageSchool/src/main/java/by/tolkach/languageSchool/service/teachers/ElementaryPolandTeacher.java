@@ -6,7 +6,7 @@ import by.tolkach.languageSchool.model.Student;
 import by.tolkach.languageSchool.service.teachers.api.Teacher;
 import by.tolkach.languageSchool.service.teaching.Speaking;
 import by.tolkach.languageSchool.service.teaching.Testing;
-import by.tolkach.languageSchool.service.teaching.api.BeginnersTeaching;
+import by.tolkach.languageSchool.service.teaching.api.Teaching;
 import by.tolkach.languageSchool.service.api.InjectList;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +15,16 @@ import java.util.List;
 @Service
 public class ElementaryPolandTeacher implements Teacher {
     @InjectList({Speaking.class, Testing.class})
-    private List<BeginnersTeaching> teachings;
+    private List<Teaching> teachings;
 
-    public ElementaryPolandTeacher(List<BeginnersTeaching> teachings) {
+    public ElementaryPolandTeacher(List<Teaching> teachings) {
         this.teachings = teachings;
     }
 
     @Override
-    public void teach(Student student) {
-        System.out.println("Cześć");
-        teachings.forEach(teaching -> teaching.process());
+    public String teach(Student student) {
+        System.out.println(POLAND_GREETING);
+        return prepareAnswer(POLAND_GREETING, teachings);
     }
 
     @Override
@@ -36,4 +36,5 @@ public class ElementaryPolandTeacher implements Teacher {
     public Level level() {
         return Level.A2;
     }
+
 }

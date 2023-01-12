@@ -20,27 +20,24 @@ public class LanguageSchoolIf implements ILanguageSchool {
     }
 
     @Override
-    public void inviteStudent(Student student) {
+    public String inviteStudent(Student student) {
         if (student.getLanguage().equals(Languages.ENGLISH)) {
             if (student.getLevel().equals(Level.A1)) {
-                this.teachers.get(Teacher.BEGINNER_ENGLISH_TEACHER).teach(student);
-                return;
+                return this.teachers.get(Teacher.BEGINNER_ENGLISH_TEACHER).teach(student);
             }
             if (student.getLevel().equals(Level.A2)) {
-                this.teachers.get(Teacher.ELEMENTARY_ENGLISH_TEACHER).teach(student);
-                return;
+                return this.teachers.get(Teacher.ELEMENTARY_ENGLISH_TEACHER).teach(student);
             }
         }
         if (student.getLanguage().equals(Languages.POLAND)) {
             if (student.getLevel().equals(Level.A1)) {
-                this.teachers.get(Teacher.BEGINNER_POLAND_TEACHER).teach(student);
-                return;
+                return this.teachers.get(Teacher.BEGINNER_POLAND_TEACHER).teach(student);
             }
             if (student.getLevel().equals(Level.A2)) {
-                this.teachers.get(Teacher.ELEMENTARY_POLAND_TEACHER).teach(student);
-                return;
+                return this.teachers.get(Teacher.ELEMENTARY_POLAND_TEACHER).teach(student);
             }
         }
+         return this.teachers.get(Teacher.DEFAULT_TEACHER).teach(student);
     }
 
     @Override

@@ -18,33 +18,36 @@ public class LanguageSchoolSwitch implements ILanguageSchool {
     }
 
     @Override
-    public void inviteStudent(Student student) {
+    public String inviteStudent(Student student) {
         switch (student.getLanguage()) {
             case ENGLISH: {
                 switch (student.getLevel()) {
                     case A1: {
-                        this.teachers.get(Teacher.BEGINNER_ENGLISH_TEACHER).teach(student);
-                        break;
+                        return this.teachers.get(Teacher.BEGINNER_ENGLISH_TEACHER).teach(student);
                     }
                     case A2: {
-                        this.teachers.get(Teacher.ELEMENTARY_ENGLISH_TEACHER).teach(student);
-                        break;
+                        return this.teachers.get(Teacher.ELEMENTARY_ENGLISH_TEACHER).teach(student);
+                    }
+                    default: {
+                        return this.teachers.get(Teacher.DEFAULT_TEACHER).teach(student);
                     }
                 }
-                break;
             }
             case POLAND: {
                 switch (student.getLevel()) {
                     case A1: {
-                        this.teachers.get(Teacher.BEGINNER_POLAND_TEACHER).teach(student);
-                        break;
+                        return this.teachers.get(Teacher.BEGINNER_POLAND_TEACHER).teach(student);
                     }
                     case A2: {
-                        this.teachers.get(Teacher.ELEMENTARY_POLAND_TEACHER).teach(student);
-                        break;
+                        return this.teachers.get(Teacher.ELEMENTARY_POLAND_TEACHER).teach(student);
+                    }
+                    default: {
+                        return this.teachers.get(Teacher.DEFAULT_TEACHER).teach(student);
                     }
                 }
-                break;
+            }
+            default: {
+                return this.teachers.get(Teacher.DEFAULT_TEACHER).teach(student);
             }
         }
     }
